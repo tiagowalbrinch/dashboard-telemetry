@@ -1,0 +1,22 @@
+<div *ngIf="!isArray(value)">
+  <p>{{ field }}:</p>
+  <p *ngIf="isNumber(value)">
+    {{ parseFloat(value) | number : "1.0-2" }}
+  </p>
+  <p *ngIf="!isNumber(value)">{{ value }}</p>
+</div>
+<div *ngIf="isArray(value)">
+  <p>{{ field }}:</p>
+  <span *ngFor="let data of value; let i = index">
+    <span *ngIf="!isArray(data)">
+      <p *ngIf="isNumber(data)">{{ parseFloat(data) | number : "1.0-2" }}</p>
+      <p *ngIf="!isNumber(data)">{{ data }}</p>
+    </span>
+    <span *ngIf="isArray(data)">
+      <span *ngFor="let x of data; let i = index">
+        <p *ngIf="isNumber(x)">{{ parseFloat(x) | number : "1.0-2" }}</p>
+        <p *ngIf="!isNumber(x)">{{ x }}</p>
+      </span>
+    </span>
+  </span>
+</div>
